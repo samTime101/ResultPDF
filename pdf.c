@@ -1,4 +1,4 @@
-// For refernce the initial code is given in READme.MD
+// For refernce the initial PDF syntax code is given in README.mdd
 // https://github.com/mozilla/pdf.js-sample-files/blob/7dbc3700be83936e32d8df04dbb2df8024f38b59/helloworld.pdf
 
 #include <stdio.h>
@@ -66,7 +66,7 @@ int pdf(char name[]) {
 
   // position of text
 
-  // the right is the down position and right is the horizontal position
+   //( " horizontal vertical ")
   fprintf(file, "100 791 TD\n");
 
   // font size
