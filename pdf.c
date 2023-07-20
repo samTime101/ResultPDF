@@ -2,14 +2,21 @@
 // https://github.com/mozilla/pdf.js-sample-files/blob/7dbc3700be83936e32d8df04dbb2df8024f38b59/helloworld.pdf
 
 #include <stdio.h>
-int pdf(char name[]);
-int pdf(char name[]) {
+#include <string.h>
+
+int pdf(char name[], char school[]);
+
+int pdf(char name[], char school[]) {
+  int content_length = strlen(name) + strlen(school);
+  float page_width = 595.276, page_height = 841.890;
   FILE *file;
+
   file = fopen("hello_world.pdf", "wb");
   if (file == NULL) {
     printf("Error opening file.");
     return 1;
   }
+
   fprintf(file, "%%PDF-1.7\n");
 
   fprintf(file, "1 0 obj\n");
@@ -24,7 +31,7 @@ int pdf(char name[]) {
   fprintf(file, "  /Type /Pages\n");
 
   // page format
-  fprintf(file, "  /MediaBox [ 0 0 595.276 841.890 ]\n");
+  fprintf(file, "  /MediaBox [ 0 0 %f %f ]\n", page_width, page_height);
 
   fprintf(file, "  /Count 1\n");
   fprintf(file, "  /Kids [ 3 0 R ]\n");
@@ -46,8 +53,6 @@ int pdf(char name[]) {
 
   fprintf(file, "4 0 obj\n");
   fprintf(file, "<<\n");
-  fprintf(file, "4 0 obj\n");
-  fprintf(file, "<<\n");
   fprintf(file, "  /Type /Font\n");
   fprintf(file, "  /Subtype /Type1\n");
 
@@ -59,24 +64,27 @@ int pdf(char name[]) {
 
   fprintf(file, "5 0 obj\n");
   fprintf(file, "<<\n");
-  fprintf(file, "  /Length 44\n");
+  // Text length
+  fprintf(file, "  /Length %d\n", content_length);
   fprintf(file, ">>\n");
   fprintf(file, "stream\n");
+  // New Text object
+  //************************SCHOOL_PART************************************************
   fprintf(file, "BT\n");
-
-  // position of text
-
-   //( " horizontal vertical ")
-  fprintf(file, "100 791 TD\n");
-
-  // font size
-  fprintf(file, "/F1 50 Tf\n");
-
-  fprintf(file, "(%s) Tj\n", name);
+  fprintf(file, "40 791 TD\n");
+  fprintf(file, "/F1 30 Tf\n");
+  fprintf(file, "(%s) Tj\n", school);
   fprintf(file, "ET\n");
+  // New Text object
+  //************************NAME_PART************************************************
+  fprintf(file, "BT\n");
+  fprintf(file, "/F1 12 Tf\n");
+  fprintf(file, "40 730 TD\n");
+  fprintf(file, "(Mr. %s..) Tj\n", name);
+  fprintf(file, "ET\n");
+  //**************************************************************************************
   fprintf(file, "endstream\n");
   fprintf(file, "endobj\n");
-
   fprintf(file, "xref\n");
   fprintf(file, "0 6\n");
   fprintf(file, "0000000000 65535 f\n");
