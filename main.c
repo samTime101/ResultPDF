@@ -10,11 +10,11 @@ struct record
 int main() {
 
   printf("Enter school name:");
-  //doesnot read more than 9 characters , yep much safe
+  //doesnot read more than 39 characters , yep much safe
   scanf(" %39[^\n]", data.school);
   
   printf("Enter name:");
-  //doesnot read more than 9 characters , yep much safe
+  //not more 9 characters , yep much safe
   scanf(" %19[^\n]", data.name);
   
   pdf(data.name,data.school);
