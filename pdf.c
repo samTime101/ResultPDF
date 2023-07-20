@@ -1,4 +1,4 @@
-// For refernce the initial PDF syntax code is given in README.mdd
+// For refernce the initial PDF syntax code is given in README.md
 // https://github.com/mozilla/pdf.js-sample-files/blob/7dbc3700be83936e32d8df04dbb2df8024f38b59/helloworld.pdf
 
 #include <stdio.h>
