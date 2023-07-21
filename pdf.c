@@ -1,8 +1,9 @@
-// For refernce the initial PDF syntax code is given in README.md
+// For refernce the initial PDF syntax code is given in README.mdd
 // https://github.com/mozilla/pdf.js-sample-files/blob/7dbc3700be83936e32d8df04dbb2df8024f38b59/helloworld.pdf
 
 #include <stdio.h>
 #include <string.h>
+#include<conio.h>
 
 int pdf(char name[], char school[]);
 
@@ -11,7 +12,7 @@ int pdf(char name[], char school[]) {
   float page_width = 595.276, page_height = 841.890;
   FILE *file;
 
-  file = fopen("hello_world.pdf", "wb");
+  file = fopen("result.pdf", "wb");
   if (file == NULL) {
     printf("Error opening file.");
     return 1;
@@ -83,6 +84,11 @@ int pdf(char name[], char school[]) {
   fprintf(file, "(Mr. %s..) Tj\n", name);
   fprintf(file, "ET\n");
   //**************************************************************************************
+  fprintf(file, "BT\n");
+  fprintf(file, "40 20 TD\n");
+  fprintf(file, "/F1 17 Tf\n");
+  fprintf(file, "(SAM_TIME101-2080-4-4 v1.01) Tj\n");
+  fprintf(file, "ET\n");
   fprintf(file, "endstream\n");
   fprintf(file, "endobj\n");
   fprintf(file, "xref\n");
@@ -103,6 +109,9 @@ int pdf(char name[], char school[]) {
   fprintf(file, "%%EOF\n");
 
   fclose(file);
+printf("THANK YOU FILE CREATED \n");
+printf("Check result.pdf in current directory \n");
+getch();
 
   return 0;
 }
